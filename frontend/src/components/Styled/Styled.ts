@@ -1,4 +1,21 @@
 import styled from "styled-components";
+import { CiHeart } from "react-icons/ci";
+
+// Стиль для кнопки серця
+export const HeartButton = styled(CiHeart)<{ $isFavorite: boolean }>`
+  color: ${(props) => (props.$isFavorite ? "red" : "white")};
+  cursor: pointer;
+  font-size: 24px;
+  transition: color 0.3s ease;
+  position: absolute; /* Додаємо абсолютне позиціонування */
+  top: 10px; /* Відступ зверху */
+  right: 10px; /* Відступ з правого боку */
+background: transparent;
+
+  &:hover {
+    color: ${(props) => (props.$isFavorite ? "darkred" : "darkgrey")};
+  }
+`;
 
 // Контейнер каталогу
 export const CatalogContainer = styled.div`
@@ -33,30 +50,34 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-// Картка авто
+// Контейнер картки авто
 export const CarCardContainer = styled.li`
   display: inline-block;
   width: 250px;
   margin: 10px;
-  padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
+  position: relative; /* Додаємо позиціонування для дочірніх елементів */
 
   &:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 `;
 
+
 // Новий стиль для контейнера карток
 export const CarCardList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);  // 4 колонки
-  gap: 20px;  // Відступи між картками
+  grid-template-columns: repeat(4, 1fr); // 4 колонки
+  gap: 20px; // Відступи між картками
   list-style-type: none;
   padding: 0;
+  max-width: 1200px; /* Встановлюємо максимальну ширину, яку бажаєте */
+  margin: 0 auto; /* Автоматичне вирівнювання по горизонталі */
 `;
+
 
 export const CarImage = styled.img`
   width: 100%;
@@ -77,8 +98,6 @@ export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -101,20 +120,6 @@ export const CloseButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 20px;
-`;
-
-export const HeartButton = styled.button<{ isFavorite: boolean }>`
-  padding: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  color: ${(props) => (props.isFavorite ? "red" : "gray")};
-  transition: color 0.3s;
-
-  &:hover {
-    color: red;
-  }
 `;
 export const FavoritesContainer = styled.div`
 

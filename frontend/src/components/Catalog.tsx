@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAdverts, selectAdverts } from "../store/advertsSlice";
 import { Car } from "../store/advertsSlice";
@@ -34,6 +34,7 @@ const Catalog: React.FC = () => {
       setFavorites(JSON.parse(savedFavorites));
     }
   }, []);
+  
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -64,14 +65,14 @@ const Catalog: React.FC = () => {
   };
 
   const handleFavoriteToggle = (car: Car) => {
-    setFavorites((prevFavorites) => {
-      if (prevFavorites.some((fav) => fav.id === car.id)) {
-        return prevFavorites.filter((fav) => fav.id !== car.id);
-      } else {
-        return [...prevFavorites, car];
-      }
-    });
+    const updatedFavorites = favorites.some((fav) => fav.id === car.id)
+      ? favorites.filter((fav) => fav.id !== car.id)
+      : [...favorites, car];
+  
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites)); // Оновлюємо localStorage
   };
+  
 
   if (status === "loading") return <p>Завантаження...</p>;
   if (status === "failed") return <p>Помилка завантаження</p>;
@@ -84,9 +85,11 @@ const Catalog: React.FC = () => {
           value={filters.make}
           onChange={(e) => setFilters({ ...filters, make: e.target.value })}
         >
-          <option value="">Всі марки</option>
+          <option key="default-make" value="">
+            Всі марки
+          </option>
           {availableMakes.map((make) => (
-            <option key={make} value={make}>
+            <option key={`make-${make}`} value={make}>
               {make}
             </option>
           ))}
@@ -96,9 +99,11 @@ const Catalog: React.FC = () => {
           value={filters.price}
           onChange={(e) => setFilters({ ...filters, price: e.target.value })}
         >
-          <option value="">Всі ціни</option>
+          <option key="default-price" value="">
+            Всі ціни
+          </option>
           {availablePrices.map((price) => (
-            <option key={price} value={price}>
+            <option key={`price-${price}`} value={price}>
               {price} $
             </option>
           ))}

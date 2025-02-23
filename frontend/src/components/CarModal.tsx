@@ -18,7 +18,7 @@ const CarModal: React.FC<CarModalProps> = ({ car, onClose, onFavoriteToggle, isF
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose}>×</CloseButton>
-        <img src={car.img} alt={car.model} width="100%" />
+        <img src={car.img} alt={car.model} width="100px" />
         <h2>
           {car.make} {car.model}
         </h2>
@@ -32,7 +32,7 @@ const CarModal: React.FC<CarModalProps> = ({ car, onClose, onFavoriteToggle, isF
 
         <HeartButton 
           onClick={handleFavoriteToggle}
-          isFavorite={isFavorite}
+          $isFavorite={isFavorite}
         >
           F
         </HeartButton>

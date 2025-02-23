@@ -1,6 +1,6 @@
-import CatalogComponent from "../components/Catalog"; // змінити ім'я на CatalogComponent
+import CatalogComponent from "../components/Catalog";
 
-const CatalogPage: React.FC = () => { // змінити ім'я компонента
+const CatalogPage: React.FC = () => { 
   return (
     <div>
       <CatalogComponent />

@@ -1,16 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
-import FavoritesPage from "./pages/FavoritesPage";
+
+import AddCarForm from "./components/addCarForm";
 
 const AppRoutes: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/" element={<CatalogPage />} />
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/add" element={<AddCarForm />} />
       </Routes>
     </BrowserRouter>
   );
