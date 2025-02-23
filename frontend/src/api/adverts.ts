@@ -1,15 +1,6 @@
 import axios from "axios";
-
+import { Car } from "../store/advertsSlice"; 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
-// Тип для оголошення авто
-interface Car {
-  id: number;
-  img: string;
-  make: string;
-  model: string;
-  rentalPrice: number;
-}
 
 // Отримати всі оголошення
 export const fetchAdverts = async (): Promise<Car[]> => {

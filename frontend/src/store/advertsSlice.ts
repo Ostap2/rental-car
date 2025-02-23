@@ -2,12 +2,11 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "./index";
 
-// URL API
 const API_URL = "https://67b0c63a3fc4eef538e8608c.mockapi.io/adverts";
 
 
 
-// Тип для авто
+
 export interface Car {
   id: string;
   make: string;
@@ -20,15 +19,14 @@ export interface Car {
   fuelConsumption: number;
   engineSize: number;
   accessories: string[];
-  functionalities: string[]; // Додано
-  rentalCompany: string; // Додано
-  address: string; // Додано
-  rentalConditions: string; // Додано
+  functionalities: string[]; 
+  rentalCompany: string; 
+  address: string; 
+  rentalConditions: string; 
+  title: string;
 }
 
 
-
-// Стан Redux
 interface AdvertsState {
   items: Car[];
   status: "idle" | "loading" | "succeeded" | "failed";
@@ -39,7 +37,6 @@ const initialState: AdvertsState = {
   status: "idle",
 };
 
-// Завантаження всіх авто
 export const loadAdverts = createAsyncThunk<Car[]>(
   "adverts/loadAdverts",
   async () => {
@@ -56,7 +53,6 @@ export const loadAdverts = createAsyncThunk<Car[]>(
 
 
 
-// Додавання нового авто
 export const addAdvert = createAsyncThunk<Car, Omit<Car, "id">>(
   "adverts/addAdvert",
   async (newAdvert) => {

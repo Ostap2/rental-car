@@ -49,6 +49,15 @@ export const CarCardContainer = styled.li`
   }
 `;
 
+// Новий стиль для контейнера карток
+export const CarCardList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  // 4 колонки
+  gap: 20px;  // Відступи між картками
+  list-style-type: none;
+  padding: 0;
+`;
+
 export const CarImage = styled.img`
   width: 100%;
   border-radius: 5px;
@@ -92,4 +101,21 @@ export const CloseButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 20px;
+`;
+
+export const HeartButton = styled.button<{ isFavorite: boolean }>`
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: ${(props) => (props.isFavorite ? "red" : "gray")};
+  transition: color 0.3s;
+
+  &:hover {
+    color: red;
+  }
+`;
+export const FavoritesContainer = styled.div`
+
 `;
